@@ -1,10 +1,13 @@
 {% set menus = menu_service.findAll %}
+{% set options = option_service.findAll %}
+
+
 
 <!DOCTYPE html>
 <html lang="fr">
     <head>
         <meta charset="UTF-8">
-        <title>CMS - {% block title %}{% endblock %}</title>
+        <title>{{ options['website_title'] }} - {% block title %}{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
@@ -48,7 +51,7 @@
         <div class="container">
             <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
                 <a class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none" href="{{ path('app_home') }}">
-                    <span class="fs-4">CMS</span>
+                    <span class="fs-4">{{ options['website_title'] }}</span>
                 </a>
 
                 <ul class="nav nav-pills">
@@ -73,9 +76,11 @@
                     {% endfor %}
 
                     {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
+                        {% if '1' == options['users_can_register'] %}
                     <li class="nav-item">
                         <a class="nav-link text-dark" href="{{ path('app_register') }}">S'inscrire</a>
                     </li>
+                        {% endif %}
                     <li class="nav-item">
                         <a class="nav-link text-dark" href="{{ path('app_login') }}">Se connecter</a>
                     </li>
@@ -106,7 +111,7 @@
         <div class="container">
             <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
                 <div class="col-md4 d-flex align-items-center">
-                    <span class="copyright">© {{ 'now' |date('Y') }} CMS. Tous droits réservés.</span>
+                    <span class="copyright">© {{ 'now' |date('Y') }} - {{ options['website_copyright'] }}</span>
                 </div>
             </footer>
         </div>

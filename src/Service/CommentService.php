@@ -22,7 +22,7 @@ class CommentService
     {
         $request = $this->requestStack->getMainRequest();
         $page = $request->query->getInt('page', 1);
-        $limit = 2;
+        $limit = 10;
 
         $commentsQuery = $this->commentRepo->findForPagination($article);
 
