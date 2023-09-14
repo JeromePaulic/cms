@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <title>Bienvenue sur l'installation du CMS</title>
+        {% block stylesheets %}
+         {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+
+        {% block javascripts %}
+         {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+    </head>
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+
+                        <h5>Bienvenue sur l'installation du CMS</h5>
+                        <P>CMS est l’acronyme de Content Management System, c’est-à-dire système de gestion de contenu. Il s’agit d’un logiciel en ligne grâce auquel il est possible de créer, de gérer et de modifier facilement un site web, sans avoir besoin de connaissances techniques en langage informatique.</P>
+                        <hr>
+
+                        <h5 class="card-title">Informations nécessaires à l'installation</h5>
+                        <hr>
+
+                        {{ form(form) }}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+
+
+
+
+
+</html>

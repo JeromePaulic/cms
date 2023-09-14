@@ -13,7 +13,7 @@ class OptionFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
-        $options[] = new Option('Titre du site web', 'website_title', 'Mon site web', TextType::class);
+        //$options[] = new Option('Titre du site web', 'website_title', 'Mon site web', TextType::class);
         $options[] = new Option('Texte du copyright', 'website_copyright', 'Tous droits réservés', TextType::class);
         $options[] = new Option("Nombre d'articles par page", "website_articles_limit", 5, NumberField::class);
         $options[] = new Option("Tout le monde peut s'inscrire", "users_can_register", true, CheckboxType::class);

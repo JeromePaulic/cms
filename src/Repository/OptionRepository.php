@@ -6,6 +6,7 @@ use App\Entity\Option;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -47,4 +48,10 @@ class OptionRepository extends ServiceEntityRepository
         }
     }
 
+
+    public function getIndexQueryBuilder(): QueryBuilder
+    {
+        return $this->createQueryBuilder('o')
+            ->where('o.type IS NOT NULL');
+    }
 }
