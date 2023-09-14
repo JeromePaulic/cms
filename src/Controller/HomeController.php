@@ -4,12 +4,13 @@ namespace App\Controller;
 
 
 use App\Entity\Option;
+use App\Entity\User;
 use App\Form\Type\InstallType;
+use App\Model\InstallModel;
 use App\Repository\CategoryRepository;
 use App\Service\ArticleService;
 use App\Service\OptionService;
 use Doctrine\ORM\EntityManagerInterface;
-use InstallModel;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,6 +20,11 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
 {
+
+    public function __construct(private OptionService $optionService)
+    {
+    }
+
     #[Route('/', name: 'app_home')]
     public function index(ArticleService $articleService, CategoryRepository $categoryRepo): Response
     {
@@ -49,14 +55,14 @@ class HomeController extends AbstractController
             /** @var  InstallModel $data */
             $data = $installForm->getData();
 
-            $siteTile = new Option(InstallModel::SITE_TITLE_LABEL, InstallModel::SITE_TITLE_NAME, $data->getSiteTitle(), TextType::class);
+            $siteTitle = new Option(InstallModel::SITE_TITLE_LABEL, InstallModel::SITE_TITLE_NAME, $data->getSiteTitle(), TextType::class);
             $siteInstalled = new Option(InstallModel::SITE_INSTALLED_LABEL, InstallModel::SITE_INSTALLED_NAME, true, null);
 
-            $user = new($data->getUsername());
+            $user = new User($data->getUsername());
             $user->setRoles(['ROLE_ADMIN']);
             $user->setPassword($passwordHasher->hashPassword($user, $data->getPassword()));
 
-            $em->persist($siteTile);
+            $em->persist($siteTitle);
             $em->persist($siteInstalled);
             $em->persist($user);
 

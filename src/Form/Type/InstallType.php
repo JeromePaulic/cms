@@ -2,6 +2,7 @@
 
 namespace App\Form\Type;
 
+use App\Model\InstallModel;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -15,7 +16,7 @@ class InstallType extends AbstractType
     {
         $builder
             ->add('siteTitle', TextType::class, [
-                'label' => "Titre du site web"
+                'label' => 'Titre du site'
             ])
             ->add('username', TextType::class, [
                 'label' => "Nom d'utilisateur ( Administrateur )"
@@ -31,7 +32,7 @@ class InstallType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => \InstallModel::class
+            'data_class' => InstallModel::class
         ]);
     }
 }

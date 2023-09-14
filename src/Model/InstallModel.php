@@ -1,9 +1,11 @@
 <?php
 
+namespace App\Model;
+
 class InstallModel
 {
     const SITE_TITLE_LABEL = 'Titre du site web';
-    const SITE_TITLE_NAME = 'website_tile';
+    const SITE_TITLE_NAME = 'website_title';
 
     const SITE_INSTALLED_LABEL = 'Site installé';
     const SITE_INSTALLED_NAME = 'website_installed';
