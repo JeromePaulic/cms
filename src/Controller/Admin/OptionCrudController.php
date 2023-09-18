@@ -73,7 +73,7 @@ class OptionCrudController extends AbstractCrudController
 
         $formBuilder->add('value', $viewData->getType(), [
             'data' => $viewData->getType() === CheckboxType::class ? boolval($value) : $value,
-            'label' => 'Cocher pour valider',
+            'label' => 'Valeur',
             'required' => false
         ]);
 
@@ -124,7 +124,7 @@ class OptionCrudController extends AbstractCrudController
 
         ]);
 
-        yield TextField::new('value', 'Valeur');
+        yield TextField::new('value');
 
         yield HiddenField::new('type');
 

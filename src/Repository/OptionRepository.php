@@ -40,7 +40,7 @@ class OptionRepository extends ServiceEntityRepository
             return $this->createQueryBuilder('o')
                 ->select('o.value')
                 ->where('o.name = :name')
-                ->setParameter('name',$name)
+                ->setParameter('name', $name)
                 ->getQuery()
                 ->getSingleScalarResult();
         } catch(NoResultException|NonUniqueResultException) {
@@ -52,6 +52,7 @@ class OptionRepository extends ServiceEntityRepository
     public function getIndexQueryBuilder(): QueryBuilder
     {
         return $this->createQueryBuilder('o')
-            ->where('o.type IS NOT NULL');
+            ->where('o.type IS NOT NULL')
+            ->orderBy('o.label');
     }
 }

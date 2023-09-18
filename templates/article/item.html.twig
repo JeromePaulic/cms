@@ -5,7 +5,7 @@
         <div class="col-md-{{ leftCol ?? 5 }}">
             {% if article.featuredImage  %}
                 <a href="{{ path('article_show', { 'slug': article.slug }) }}">
-                    <img src="{{ asset('uploads/' ~ article.featuredImage.filename) }}" alt="{{ article.featuredImage.altText }}" loading="lazy" width="350" height="200">
+                    <img src="{{ asset('uploads/' ~ article.featuredImage.filename) }}" alt="{{ article.featuredImage.altText }}" loading="lazy" width="300" height="200" class="shadow rounded">
                 </a>
             {% endif %}
         </div>
@@ -16,6 +16,9 @@
             </h2>
             <p>
                 {{ article.createdAt|date('d M Y') }}
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    - <a class="text-decoration-none" href="{{ path('article_show', { 'slug': article.slug }) }}#comments">Laisser un commentaire</a>
+                {% endif %}
             </p>
                 {{ article.featuredText ?: article.content|striptags|slice(0, 160)~ '...' }}
         </div>

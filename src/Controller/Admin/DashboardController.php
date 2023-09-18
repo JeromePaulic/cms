@@ -8,6 +8,7 @@ use App\Entity\Comment;
 use App\Entity\Media;
 use App\Entity\Menu;
 use App\Entity\Option;
+use App\Entity\Page;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -74,6 +75,12 @@ class DashboardController extends AbstractDashboardController
         }
 
         if ($this->isGranted('ROLE_ADMIN')) {
+            yield MenuItem::subMenu('Pages', 'fas fa-file')->setSubItems([
+                MenuItem::linkToCrud('Toutes les pages', 'fas fa-file', Page::class),
+                MenuItem::linkToCrud('Ajouter une page', 'fas fa-plus', Page::class)->setAction(Crud::PAGE_NEW)
+            ]);
+
+
             yield MenuItem::linkToCrud('Commentaires', 'fas fa-comment', Comment::class);
 
             yield MenuItem::subMenu('comptes', 'fas fa-user')->setSubItems([
@@ -83,7 +90,7 @@ class DashboardController extends AbstractDashboardController
 
 
             yield MenuItem::subMenu('Réglages', 'fas fa-cog')->setSubItems([
-                MenuItem::linkToCrud('Généraux', 'fas fa-cog', Option::class),
+                MenuItem::linkToCrud('Général', 'fas fa-cog', Option::class),
             ]);
 
         }
