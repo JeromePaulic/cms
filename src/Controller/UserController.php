@@ -25,7 +25,7 @@ class UserController extends AbstractController
     #[Route(path: '/user/register', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
-        $userCanRegister = $this->optionService->getValue('user_can_register');
+        $userCanRegister = $this->optionService->getValue('users_can_register');
 
         if (!$userCanRegister) {
             return $this->redirectToRoute('app_home');
