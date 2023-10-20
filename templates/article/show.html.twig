@@ -8,6 +8,8 @@
 
         <hr>
 
+        <img src="{{ asset('uploads/' ~ article.featuredImage.filename) }}" alt="{{ article.featuredImage.altText }}" loading="lazy" width="500" height="" class="rounded-1 img-thumbnail shadow-lg">
+
         {{ article.content|raw }}
 
         <h2 class="comment-title mt-5">
